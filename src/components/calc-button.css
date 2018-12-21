@@ -1,0 +1,6 @@
+.calc-button {
+  box-sizing: border-box;
+  height: 3rem;
+  display: inline-block;
+  border: #616161 0.5px solid;
+}
