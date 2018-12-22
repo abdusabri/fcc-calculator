@@ -30,6 +30,8 @@ const Calculator = ({ displayValue, onCalcButtonClick }) => {
               buttonColor={BUTTON_COLORS.SECONDARY}
               buttonId={clearButton.buttonId}
               key={clearButton.buttonId}
+              buttonAction={clearButton.buttonAction}
+              onCalcButtonClick={onCalcButtonClick}
             />
           </div>
         }

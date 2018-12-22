@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { ACTION_INPUT } from "./button-const-actions";
+import { ACTION_INPUT, ACTION_CLEAR } from "./button-const-actions";
 import { getDisplayValue } from "../utils";
+
+const initialState = {
+  displayValue: "0"
+};
 
 class CalculatorContainer extends Component {
   static propTypes = {
     render: PropTypes.func.isRequired
   };
 
-  state = {
-    displayValue: "0"
-  };
+  state = { ...initialState };
 
   handleButtonAction = ({ action, payload }) => {
     switch (action) {
@@ -19,7 +21,9 @@ class CalculatorContainer extends Component {
           displayValue: getDisplayValue(this.state.displayValue, payload)
         });
         break;
-
+      case ACTION_CLEAR:
+        this.setState({ ...initialState });
+        break;
       default:
         break;
     }
