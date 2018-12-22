@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {
   ACTION_INPUT,
   ACTION_CLEAR,
-  ACTION_OPERATOR
+  ACTION_OPERATOR,
+  ACTION_EQUAL
 } from "./button-const-actions";
 import { getDisplayValue } from "../utils";
 
@@ -11,7 +12,8 @@ const initialState = {
   displayValue: "0",
   firstValue: null,
   waitingForSecondValue: false,
-  operator: null
+  operator: null,
+  isLastActionEqual: false
 };
 
 class CalculatorContainer extends Component {
@@ -32,15 +34,25 @@ class CalculatorContainer extends Component {
       case ACTION_OPERATOR:
         this.handleActionOperator(payload);
         break;
+      case ACTION_EQUAL:
+        this.handleActionEqual();
+        break;
       default:
         break;
     }
   };
 
   handleActionInput = inputValue => {
-    this.setState({
-      displayValue: getDisplayValue(this.state.displayValue, inputValue)
-    });
+    if (!this.state.isLastActionEqual) {
+      this.setState({
+        displayValue: getDisplayValue(this.state.displayValue, inputValue)
+      });
+    } else {
+      this.setState({
+        displayValue: getDisplayValue("", inputValue),
+        isLastActionEqual: false
+      });
+    }
   };
 
   handleActionOperator = operator => {
@@ -52,6 +64,17 @@ class CalculatorContainer extends Component {
       });
     } else {
       this.setState({ displayValue: operator });
+    }
+  };
+
+  handleActionEqual = () => {
+    if (!this.state.waitingForSecondValue) {
+      this.setState({
+        firstValue: this.state.displayValue,
+        displayValue: this.state.displayValue,
+        isLastActionEqual: true
+      });
+    } else {
     }
   };
 

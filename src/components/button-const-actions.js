@@ -7,6 +7,7 @@ export const BUTTON_COLORS = {
 export const ACTION_INPUT = "ACTION_INPUT";
 export const ACTION_CLEAR = "ACTION_CLEAR";
 export const ACTION_OPERATOR = "ACTION_OPERATOR";
+export const ACTION_EQUAL = "ACTION_EQUAL";
 
 export const clearButton = {
   buttonId: "clear",
@@ -33,7 +34,7 @@ export const calcButtons = [
   { buttonId: "three", buttonText: "3", buttonAction: ACTION_INPUT },
   { buttonId: "decimal", buttonText: ".", buttonAction: ACTION_INPUT },
   { buttonId: "zero", buttonText: "0", buttonAction: ACTION_INPUT },
-  { buttonId: "equals", buttonText: "=" }
+  { buttonId: "equals", buttonText: "=", buttonAction: ACTION_EQUAL }
 ];
 
 export const createButtonAction = (action, payload) => ({
