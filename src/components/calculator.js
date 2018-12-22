@@ -4,14 +4,12 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import CalcButton from "./calc-button";
 import "./calculator.css";
-
-const buttons = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "="];
-const mathOpButtons = ["÷", "×", "−", "+"];
-const buttonColors = {
-  DEFAULT: "default",
-  PRIMARY: "primary",
-  SECONDARY: "secondary"
-};
+import {
+  BUTTON_COLORS,
+  clearButton,
+  calcButtons,
+  mathOpButtons
+} from "./button-const-actions";
 
 const Calculator = () => {
   return (
@@ -21,24 +19,33 @@ const Calculator = () => {
         subheader={
           <div className="header-row">
             <input type="text" disabled defaultValue="0" className="textarea" />
-            <CalcButton buttonText="AC" buttonColor={buttonColors.SECONDARY} />
+            <CalcButton
+              buttonText={clearButton.buttonText}
+              buttonColor={BUTTON_COLORS.SECONDARY}
+              buttonId={clearButton.buttonId}
+              key={clearButton.buttonId}
+            />
           </div>
         }
       />
       <CardContent style={{ padding: 0, display: "flex" }}>
         <div className="calc-buttons-area">
-          {buttons.map(button => (
+          {calcButtons.map(button => (
             <CalcButton
-              buttonText={button}
-              buttonColor={buttonColors.DEFAULT}
+              buttonText={button.buttonText}
+              buttonColor={BUTTON_COLORS.DEFAULT}
+              buttonId={button.buttonId}
+              key={button.buttonId}
             />
           ))}
         </div>
         <div className="calc-buttons-area">
           {mathOpButtons.map(button => (
             <CalcButton
-              buttonText={button}
-              buttonColor={buttonColors.PRIMARY}
+              buttonText={button.buttonText}
+              buttonColor={BUTTON_COLORS.PRIMARY}
+              buttonId={button.buttonId}
+              key={button.buttonId}
             />
           ))}
         </div>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import "./calc-button.css";
 
-const CalcButton = ({ buttonText, buttonColor }) => {
+const CalcButton = ({ buttonText, buttonColor, buttonId }) => {
   return (
     <div className="calc-button">
       <Button
@@ -12,6 +12,7 @@ const CalcButton = ({ buttonText, buttonColor }) => {
         onClick={() => {}}
         size="large"
         color={buttonColor}
+        id={buttonId}
       >
         {buttonText}
       </Button>
@@ -21,7 +22,8 @@ const CalcButton = ({ buttonText, buttonColor }) => {
 
 CalcButton.prototypes = {
   buttonText: PropTypes.string.isRequired,
-  buttonColor: PropTypes.string.isRequired
+  buttonColor: PropTypes.string.isRequired,
+  buttonId: PropTypes.string.isRequired
 };
 
 export default CalcButton;
