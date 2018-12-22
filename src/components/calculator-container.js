@@ -60,7 +60,8 @@ class CalculatorContainer extends Component {
       this.setState({
         waitingForSecondValue: true,
         firstValue: this.state.displayValue,
-        displayValue: operator
+        displayValue: operator,
+        operator
       });
     } else {
       this.setState({ displayValue: operator });
