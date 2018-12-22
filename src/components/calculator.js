@@ -56,6 +56,8 @@ const Calculator = ({ displayValue, onCalcButtonClick }) => {
               buttonColor={BUTTON_COLORS.PRIMARY}
               buttonId={button.buttonId}
               key={button.buttonId}
+              buttonAction={button.buttonAction}
+              onCalcButtonClick={onCalcButtonClick}
             />
           ))}
         </div>

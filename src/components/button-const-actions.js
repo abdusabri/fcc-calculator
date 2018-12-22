@@ -6,6 +6,7 @@ export const BUTTON_COLORS = {
 
 export const ACTION_INPUT = "ACTION_INPUT";
 export const ACTION_CLEAR = "ACTION_CLEAR";
+export const ACTION_OPERATOR = "ACTION_OPERATOR";
 
 export const clearButton = {
   buttonId: "clear",
@@ -14,10 +15,10 @@ export const clearButton = {
 };
 
 export const mathOpButtons = [
-  { buttonId: "divide", buttonText: "÷" },
-  { buttonId: "multiply", buttonText: "×" },
-  { buttonId: "subtract", buttonText: "−" },
-  { buttonId: "add", buttonText: "+" }
+  { buttonId: "divide", buttonText: "÷", buttonAction: ACTION_OPERATOR },
+  { buttonId: "multiply", buttonText: "×", buttonAction: ACTION_OPERATOR },
+  { buttonId: "subtract", buttonText: "−", buttonAction: ACTION_OPERATOR },
+  { buttonId: "add", buttonText: "+", buttonAction: ACTION_OPERATOR }
 ];
 
 export const calcButtons = [

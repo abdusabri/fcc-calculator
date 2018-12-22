@@ -1,4 +1,6 @@
 export const getDisplayValue = (currentValue, inputValue) => {
+  if (currentValue.length === 18) return currentValue; // Max digits
+
   if (currentValue === "0") {
     if (inputValue === ".") {
       return currentValue + inputValue;
