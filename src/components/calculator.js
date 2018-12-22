@@ -3,6 +3,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import CalcButton from "./calc-button";
+import { PropTypes } from "prop-types";
 import "./calculator.css";
 import {
   BUTTON_COLORS,
@@ -11,14 +12,19 @@ import {
   mathOpButtons
 } from "./button-const-actions";
 
-const Calculator = () => {
+const Calculator = ({ displayValue }) => {
   return (
     <Card style={{ width: 453 }}>
       <CardHeader
         style={{ padding: 0, width: "100%" }}
         subheader={
           <div className="header-row">
-            <input type="text" disabled defaultValue="0" className="textarea" />
+            <input
+              type="text"
+              disabled
+              className="textarea"
+              value={displayValue}
+            />
             <CalcButton
               buttonText={clearButton.buttonText}
               buttonColor={BUTTON_COLORS.SECONDARY}
@@ -52,6 +58,10 @@ const Calculator = () => {
       </CardContent>
     </Card>
   );
+};
+
+Calculator.propTypes = {
+  displayValue: PropTypes.string.isRequired
 };
 
 export default Calculator;
