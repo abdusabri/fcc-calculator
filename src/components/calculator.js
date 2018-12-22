@@ -2,11 +2,10 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import Divider from "@material-ui/core/Divider";
 import CalcButton from "./calc-button";
 import "./calculator.css";
 
-const buttons = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", ".", "="];
+const buttons = ["7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "="];
 const mathOpButtons = ["÷", "×", "−", "+"];
 const buttonColors = {
   DEFAULT: "default",
@@ -26,8 +25,6 @@ const Calculator = () => {
           </div>
         }
       />
-
-      {/* <Divider /> */}
       <CardContent style={{ padding: 0, display: "flex" }}>
         <div className="calc-buttons-area">
           {buttons.map(button => (
