@@ -12,7 +12,7 @@ import {
   mathOpButtons
 } from "./button-const-actions";
 
-const Calculator = ({ displayValue }) => {
+const Calculator = ({ displayValue, onCalcButtonClick }) => {
   return (
     <Card style={{ width: 453 }}>
       <CardHeader
@@ -42,6 +42,8 @@ const Calculator = ({ displayValue }) => {
               buttonColor={BUTTON_COLORS.DEFAULT}
               buttonId={button.buttonId}
               key={button.buttonId}
+              buttonAction={button.buttonAction}
+              onCalcButtonClick={onCalcButtonClick}
             />
           ))}
         </div>
@@ -61,7 +63,8 @@ const Calculator = ({ displayValue }) => {
 };
 
 Calculator.propTypes = {
-  displayValue: PropTypes.string.isRequired
+  displayValue: PropTypes.string.isRequired,
+  onCalcButtonClick: PropTypes.func.isRequired
 };
 
 export default Calculator;

@@ -8,7 +8,12 @@ class App extends Component {
     return (
       <div className="app">
         <CalculatorContainer
-          render={displayValue => <Calculator displayValue={displayValue} />}
+          render={(displayValue, onCalcButtonClick) => (
+            <Calculator
+              displayValue={displayValue}
+              onCalcButtonClick={onCalcButtonClick}
+            />
+          )}
         />
       </div>
     );
