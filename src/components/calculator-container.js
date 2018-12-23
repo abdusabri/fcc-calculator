@@ -10,7 +10,7 @@ import { getDisplayValue, calculateResult } from "../utils";
 
 const initialState = {
   displayValue: "0",
-  firstValue: "0",
+  firstValue: null,
   waitingForSecondValue: false,
   operator: null,
   isLastActionEqual: false
@@ -63,36 +63,71 @@ class CalculatorContainer extends Component {
   };
 
   handleActionOperator = operator => {
-    if (!this.state.waitingForSecondValue) {
+    if (
+      !this.state.waitingForSecondValue &&
+      this.state.firstValue !== null &&
+      this.state.operator !== null
+    ) {
+      this.setState({
+        waitingForSecondValue: true,
+        displayValue: operator,
+        firstValue: calculateResult(
+          this.state.operator,
+          this.state.firstValue,
+          this.state.displayValue
+        ),
+        isLastActionEqual: false,
+        operator
+      });
+    } else if (!this.state.waitingForSecondValue) {
       this.setState({
         waitingForSecondValue: true,
         firstValue: this.state.displayValue,
         displayValue: operator,
-        operator
+        operator,
+        isLastActionEqual: false
       });
     } else {
-      this.setState({ displayValue: operator, operator });
+      this.setState({
+        displayValue: operator,
+        operator,
+        isLastActionEqual: false
+      });
     }
   };
 
   handleActionEqual = () => {
-    if (!this.state.waitingForSecondValue && this.state.firstValue === "0") {
-      this.setState({
-        firstValue: this.state.displayValue,
-        displayValue: this.state.displayValue,
-        isLastActionEqual: true
-      });
-    } else {
+    if (
+      !this.state.waitingForSecondValue &&
+      this.state.firstValue !== null &&
+      this.state.operator !== null
+    ) {
       this.setState({
         displayValue: calculateResult(
           this.state.operator,
           this.state.firstValue,
           this.state.displayValue
         ),
-        firstValue: "0",
+        firstValue: null,
         isLastActionEqual: true,
         operator: null
       });
+    } else {
+      if (this.state.waitingForSecondValue) {
+        this.setState({
+          displayValue: this.state.firstValue,
+          firstValue: null,
+          isLastActionEqual: true,
+          operator: null,
+          waitingForSecondValue: false
+        });
+      } else {
+        this.setState({
+          firstValue: this.state.displayValue,
+          displayValue: this.state.displayValue,
+          isLastActionEqual: true
+        });
+      }
     }
   };
 
