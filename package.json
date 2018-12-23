@@ -4,17 +4,21 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.7.0",
+    "gh-pages": "^2.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.1",
     "simplecalculatorjs": "^1.0.6"
   },
+  "homepage": "https://abdusabri.github.io/fcc-calculator",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
