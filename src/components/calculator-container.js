@@ -6,11 +6,11 @@ import {
   ACTION_OPERATOR,
   ACTION_EQUAL
 } from "./button-const-actions";
-import { getDisplayValue } from "../utils";
+import { getDisplayValue, calculateResult } from "../utils";
 
 const initialState = {
   displayValue: "0",
-  firstValue: null,
+  firstValue: "0",
   waitingForSecondValue: false,
   operator: null,
   isLastActionEqual: false
@@ -44,9 +44,16 @@ class CalculatorContainer extends Component {
 
   handleActionInput = inputValue => {
     if (!this.state.isLastActionEqual) {
-      this.setState({
-        displayValue: getDisplayValue(this.state.displayValue, inputValue)
-      });
+      if (!/[÷|×|−|+]/g.test(this.state.displayValue)) {
+        this.setState({
+          displayValue: getDisplayValue(this.state.displayValue, inputValue)
+        });
+      } else {
+        this.setState({
+          displayValue: getDisplayValue("", inputValue),
+          waitingForSecondValue: false
+        });
+      }
     } else {
       this.setState({
         displayValue: getDisplayValue("", inputValue),
@@ -64,18 +71,28 @@ class CalculatorContainer extends Component {
         operator
       });
     } else {
-      this.setState({ displayValue: operator });
+      this.setState({ displayValue: operator, operator });
     }
   };
 
   handleActionEqual = () => {
-    if (!this.state.waitingForSecondValue) {
+    if (!this.state.waitingForSecondValue && this.state.firstValue === "0") {
       this.setState({
         firstValue: this.state.displayValue,
         displayValue: this.state.displayValue,
         isLastActionEqual: true
       });
     } else {
+      this.setState({
+        displayValue: calculateResult(
+          this.state.operator,
+          this.state.firstValue,
+          this.state.displayValue
+        ),
+        firstValue: "0",
+        isLastActionEqual: true,
+        operator: null
+      });
     }
   };
 
