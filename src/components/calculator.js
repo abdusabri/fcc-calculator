@@ -20,6 +20,7 @@ const Calculator = ({ displayValue, onCalcButtonClick }) => {
         subheader={
           <div className="header-row">
             <input
+              id="display"
               type="text"
               disabled
               className="textarea"
