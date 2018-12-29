@@ -41,3 +41,44 @@ export const createButtonAction = (action, payload) => ({
   action,
   payload
 });
+
+export const createActionFromKeydown = key => {
+  if (/\d/.test(key) || key === ".") {
+    return {
+      action: ACTION_INPUT,
+      payload: key
+    };
+  } else if (key === "Enter" || key === "=") {
+    return {
+      action: ACTION_EQUAL,
+      payload: key
+    };
+  } else if (key === "Clear" || key === "Escape") {
+    return {
+      action: ACTION_CLEAR,
+      payload: key
+    };
+  } else if (key === "+") {
+    return {
+      action: ACTION_OPERATOR,
+      payload: "+"
+    };
+  } else if (key === "-") {
+    return {
+      action: ACTION_OPERATOR,
+      payload: "−"
+    };
+  } else if (key === "/") {
+    return {
+      action: ACTION_OPERATOR,
+      payload: "÷"
+    };
+  } else if (key === "*") {
+    return {
+      action: ACTION_OPERATOR,
+      payload: "×"
+    };
+  } else {
+    return null;
+  }
+};

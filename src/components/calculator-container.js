@@ -4,7 +4,8 @@ import {
   ACTION_INPUT,
   ACTION_CLEAR,
   ACTION_OPERATOR,
-  ACTION_EQUAL
+  ACTION_EQUAL,
+  createActionFromKeydown
 } from "./button-const-actions";
 import { stateChangeHandlers } from "./calculator-state-changes";
 
@@ -22,6 +23,21 @@ class CalculatorContainer extends Component {
   };
 
   state = { ...initialState };
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown");
+  }
+
+  handleKeyDown = event => {
+    const action = createActionFromKeydown(event.key);
+    if (action) {
+      this.handleButtonAction(action);
+    }
+  };
 
   handleButtonAction = ({ action, payload }) => {
     switch (action) {
